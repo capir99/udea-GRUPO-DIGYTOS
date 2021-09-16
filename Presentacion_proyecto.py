@@ -12,7 +12,7 @@ print("\n*Módulo administrador de ventas:")
 print("\nPermite ingresar o registrar los pedidos realizados por cada uno de los clientes. Deberá tener un identificador único de venta, almacenar el valor total de la venta y la descripción detallada de la misma y tener una fecha inicial y una fecha futura de pago. Además, deberá contar con un encargado de gestionar dicha venta (responsable).")
 
 print("\n*Módulo para registrar el estado de la venta:")
-print("\nDescribir...")
+print("\nPermite establecer los diferentes estados de la venta a lo largo del ciclo de vida de la línea de producción (creación, embalaje, despacho, ruta, ubicación, recepción).")
 
 print("\n*Gestión de vendedores:")
 print("\nDescribir...")
