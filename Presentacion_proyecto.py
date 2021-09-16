@@ -18,7 +18,8 @@ print("\n*Gestión de vendedores:")
 print("\nDescribir...")
 
 print("\n*Gestión de ingreso al sistema de información:")
-print("\nDescribir...")
+print("\nEl sistema contendrá una pantalla de ingreso con login y password.Este módulo hará la integración de los demás módulos del sistema para garantizar que los roles de los usuarios se ajusten a las distintas opciones de cada menú o formulario. Se contempla la identificación y el desarrollo de los casos de uso relacionados con la seguridad, así como el análisis de requisitos y el diseño del módulo.
+")
 
 print("\n*Gestión de usuarios y roles:")
 print("\nDescribir...")
