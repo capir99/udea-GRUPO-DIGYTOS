@@ -16,7 +16,7 @@ Alcance: Realizar el diseño,implementación, pruebas y despliegue del sistema d
 <li><h3>Gestión de vendedores:</h3> 
   <p>Permite ingresar la información básica de los vendedores que participan en un negocio de ventas. La información a registrar sería el identificador único del vendedor, el nombre, la especialidad, el número de celular y la fecha de ingreso.</p>
 <li><h3>Gestión de ingreso al sistema de información:</h3>
-  <p>Describir...</p>
+  <p>El sistema contendrá una pantalla de ingreso con login y password.Este módulo hará la integración de los demás módulos del sistema para garantizar que los roles de los usuarios se ajusten a las distintas opciones de cada menú o formulario. Se contempla la identificación y el desarrollo de los casos de uso relacionados con la seguridad, así como el análisis de requisitos y el diseño del módulo.</p>
 <li><h3>Gestión de usuarios y roles:</h3>
   <p>Describir...</p>
 </ul>
