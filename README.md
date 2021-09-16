@@ -12,7 +12,7 @@ Alcance: Realizar el diseño,implementación, pruebas y despliegue del sistema d
 <li><h3>Módulo administrador de ventas:</h3>
   <p>Permite ingresar o registrar los pedidos realizados por cada uno de los clientes. Deberá tener un identificador único de venta, almacenar el valor total de la venta y la descripción detallada de la misma y tener una fecha inicial y una fecha futura de pago. Además, deberá contar con un encargado de gestionar dicha venta (responsable).</p>
 <li><h3>Módulo para registrar el estado de la venta:</h3> 
-  <p>Describir...</p>
+  <p>Permite establecer los diferentes estados de la venta a lo largo del ciclo de vida de la línea de producción (creación, embalaje, despacho, ruta, ubicación, recepción)</p>
 <li><h3>Gestión de vendedores:</h3> 
   <p>Describir...</p>
 <li><h3>Gestión de ingreso al sistema de información:</h3>
