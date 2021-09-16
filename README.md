@@ -14,7 +14,7 @@ Alcance: Realizar el diseño,implementación, pruebas y despliegue del sistema d
 <li><h3>Módulo para registrar el estado de la venta:</h3> 
   <p>Permite establecer los diferentes estados de la venta a lo largo del ciclo de vida de la línea de producción (creación, embalaje, despacho, ruta, ubicación, recepción)</p>
 <li><h3>Gestión de vendedores:</h3> 
-  <p>Describir...</p>
+  <p>Permite ingresar la información básica de los vendedores que participan en un negocio de ventas. La información a registrar sería el identificador único del vendedor, el nombre, la especialidad, el número de celular y la fecha de ingreso.</p>
 <li><h3>Gestión de ingreso al sistema de información:</h3>
   <p>Describir...</p>
 <li><h3>Gestión de usuarios y roles:</h3>
