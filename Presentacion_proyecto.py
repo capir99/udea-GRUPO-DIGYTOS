@@ -15,10 +15,10 @@ print("\n*Módulo para registrar el estado de la venta:")
 print("\nPermite establecer los diferentes estados de la venta a lo largo del ciclo de vida de la línea de producción (creación, embalaje, despacho, ruta, ubicación, recepción).")
 
 print("\n*Gestión de vendedores:")
-print("\nDescribir...")
+print("\nPermite acceder al historial de ventas asociado a cada vendedor, así como a registros de precios, productos y horas")
 
 print("\n*Gestión de ingreso al sistema de información:")
 print("\nEl sistema contendrá una pantalla de ingreso con login y password.Este módulo hará la integración de los demás módulos del sistema para garantizar que los roles de los usuarios se ajusten a las distintas opciones de cada menú o formulario. Se contempla la identificación y el desarrollo de los casos de uso relacionados con la seguridad, así como el análisis de requisitos y el diseño del módulo.")
 
 print("\n*Gestión de usuarios y roles:")
-print("\nDescribir...")
+print("\nPermite crear, eliminar y o editar usuarios, así como asignar permisos deacuerdo a su rol")
