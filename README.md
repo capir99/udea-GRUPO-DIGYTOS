@@ -4,7 +4,7 @@ Repositorio GitHub ciclo 3 grupos integrantes : Aicardo Emmanuel Suárez Balague
 
 <h1>Descripción proyecto aplicación web ventas tienda DIGYTOS</h1>
 
-Alcance: Realizar el diseño,implementación, pruebas y despliegue del sistema de ventas de la tienda de Digytos (tienda online) 
+Alcance: Realizar el diseño,implementación, pruebas y despliegue del sistema de ventas de la tienda de DIGYTOS (tienda online) 
 
 <h2>Módulos que lo componen:</h2>
 
