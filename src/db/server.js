@@ -2,14 +2,14 @@
 const path = require('path');    
 const express = require('express');                         //instanciar al módulo express
 const app = express();                                      // instanciar el módulo
-const connectDB = require('./src/db/Connection');
+const connectDB = require('./Connection');
 const morgan = require('morgan');
 
 //Conectar a la base por mongoose
 connectDB();
 
 //Importar enrrutadores
-const indexRoutes = require('./src/routes/index')
+const indexRoutes = require('../routes/index')
 
 
 //Configuración

@@ -1,31 +1,41 @@
-import logo from './logo.png';
-import gmail from './img/gmail.png';
+
 import './css/App.css';
 import './css/estilos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-
-// import  { BrowserRouter as Router, Route} from "react-router-dom";
-// 
+import Header from './shared/Header';
+import Content from './home/components/Content';
+import Home from './home/pages/Home';
+import Error from './shared/pages/Error';
+import  { BrowserRouter as Router, Switch, Redirect, Route} from "react-router-dom";
 // import Container from 'react-bootstrap/Container'
 // import Row from 'react-bootstrap/Row'
 
 
 function App() {
   return (
-    <div>
 
-      <div className="header"><h1>SISTEMA DE GESTIÓN DE VENTAS</h1></div>
-
-      <div className="d-flex justify-content-center mt-5">
-        <Button type="button" className="btn btn-primary ">
-          <img className="mb-1" src={gmail} alt="" width="50" height="50"/>Iniciar sesi&oacute;n con Gmail</Button>
-      </div>
-      <div className="d-flex justify-content-center mt-5">
-        <img className="mb-4" src={logo} alt="" width="300" height="80"/>
-      </div>
-
-
+    
+    <div className="App">
+      
+      <Router>
+          <Switch>
+            <Route path='/' exact>   
+              <Header />
+              <Content />
+            </Route>
+            <Route path='/home' exact>
+              <Home />
+            </Route>
+            <Route path='/error' exact>
+              <Error />
+            </Route>
+            <Redirect to='/error' />
+        
+          </Switch>
+      </Router>
+    
+      
+      
     </div>
   );
 }
