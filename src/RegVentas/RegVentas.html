@@ -17,7 +17,7 @@
 <div class="header">
   <h1>SISTEMA DE GESTIÓN DE VENTAS</h1>
 </div>
-
+<!-- --------------------- Menú-------------------------------------------- -->
 <div class="row">
 <div class="col-3 col-s-3 menu">
     <ul class="list">
@@ -70,6 +70,7 @@
     <div class="container">
 
         <div class="row">
+<!-- --------------------- Fecha y Estado de la facturación-------------------------------------------- -->
             <div class="col-sm-12">
 
                 <div class="grid"> <!-- contenedor -->
@@ -94,9 +95,7 @@
                 </div>
             </div>
 
-
-
-
+<!-- --------------------- Datos de facturación -------------------------------------------- -->
             <div class="col-sm-12">
                 <form class="form">            
                     <label id="form_tag" for="firstName" class="label_1">Codigo de Venta</label>
@@ -116,7 +115,7 @@
                     
                 </form>
             </div>
-
+<!-- --------------------- Área de adición de prodcutos-------------------------------------------- -->
             <div class="col-sm-12">
                 <div class="grid_2"> <!-- contenedor -->
                     <div class="a_2">
@@ -130,9 +129,7 @@
                     </div>
                 </div>
             </div>
-
-
-
+<!-- --------------------- Tabla de productos -------------------------------------------- -->
             <div class="col-sm-12">
                 <table id="tbUsuario" class="table table-striped col-5 col-s-12" >
                     <thead>
@@ -141,8 +138,8 @@
                         <th scope="col">ID</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Precio Unitario</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
                         <th scope="col">Acción</th>
                         </tr>
                     </thead>
@@ -153,7 +150,7 @@
                         <td>Papa</td>
                         <td>100</td>
                         <td>100</td>
-                        <td>10000</td>
+                        <td>$ 10.000</td>
                         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button></td>
                         </tr>
                         <tr>
@@ -162,7 +159,7 @@
                         <td>Tomate</td>
                         <td>200</td>
                         <td>2</td>
-                        <td>12/03/2021</td>
+                        <td>$ 400</td>
                         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button></td>
                         </tr>
                         <tr>
@@ -171,84 +168,36 @@
                         <td>Huevo</td>
                         <td>500</td>
                         <td>12</td>
-                        <td>6000</td>
+                        <td>$ 6.000</td>
                         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button></td>
-                        </tr>         
+                        </tr>  
+                        <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><label id="form_tag" for="firstName" class="Lab_costo_total">Costo total</label></td>
+                        <td><label id="form_tag" for="firstName" class="costo_total">$ 16.400</label></td>
+                        <td></td>
+                        </tr>       
                         
                     </tbody>
                 </table>
             </div>
 
-            <div class="col-10">         
-                <label id="form_tag" for="firstName" class="first-name">Costo total</label>
-                <label id="form_tag" for="firstName" class="first-name">$ 14.000</label>
+            <div class="col-sm-12">
+                <button type="button" class="facturar" data-bs-toggle="add" data-bs-target="#exampleAddProduct">Facturar</button></td>   
             </div>
 
-            <div class="col-10 col-s-12">
-                <button type="button" class="btn btn-primary" data-bs-toggle="add" data-bs-target="#exampleAddProduct">Facturar</button></td>
-    
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="col5">
-
- 
-    </div>
-
-
-
-
-    
-
-    <form action="">
-    <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Elegir Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">               
-                
-                    <div class="row">
-                        <div class="col-2 col-s-12">
-                            <label for="campo4" class="form-label">Producto</label>
-                        </div>
-                        <div class="col-8 col-s-12">
-                            <select id="campo4"  class="form-select">
-                                <option value="1" selected>Papa</option>
-                                <option value="2">Arroz</option>
-                                <option value="3">Tomate</option>
-                                <option value="3">Platanos</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-
-    </form>
-    
+        </div>      
+    </div> 
 </div>
-</div>
-
-
-</div>
-
+<!-- --------------------- Botón de facturación-------------------------------------------- -->
 <div class="footer">
     <p>Esta aplicación fue creada por el grupo DIGYTOS en línea con los proyectos MINTIC.</p>
 </div>
+
 <script src="usuario.js"></script>
+
 </body>
 </html>
