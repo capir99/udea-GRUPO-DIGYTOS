@@ -13,13 +13,13 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 430px;
   padding: 15px;
   margin: auto;
 }
 
 .form-signin .checkbox {
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .form-signin .form-floating:focus-within {
@@ -36,4 +36,21 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
