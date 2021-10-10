@@ -8,7 +8,7 @@ const NavLogin = ({ login }) => {
     login(false);
   };
   return (
-    <div class="row">
+    <div className="row">
       <Nav
         variant="pills"
         defaultActiveKey="/home"

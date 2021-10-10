@@ -2,7 +2,6 @@ import Menu from "../../Shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 
-
 const GestionUsuario = ({ isLoggedIn, login }) => {
   //hooks para actualizar lista de usuarios, usuario seleccionado y visibilidad de la pantalla modal
   const [usuarios, setUsuarios] = useState([]);
@@ -89,7 +88,6 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
     handleClose();
   };
 
-
   // Return de componente a renderizar
   return (
     <div>
@@ -150,7 +148,6 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                         })}
                       </tbody>
                     </table>
-
                   </Form.Group>
                 </Form>
 

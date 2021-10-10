@@ -32,9 +32,32 @@ exports.getUsuarioById = (req, res) => {
   });
 };
 
+//metodo para consultar un usuario por su Login
+exports.getUsuarioByLogin = (req, res) => {
+  const filter = { login: { $regex: "^" + req.params.login, $options: "i" } };
+
+  Usuario.find(filter).then((userResult) => {
+    if (userResult) {
+      res.status(200).json(userResult);
+    } else {
+      res.status(404).json("Usuario no encontrado");
+    }
+  });
+};
+
 //metodo para modificar un usuario existente
 exports.modifyUsuario = (req, res) => {
-  //EN CONSTRUCCION
-  //
-  res.status(202).json("Usuario actualizado satisfactoriamente");
+  const filter = { _id: req.params.id };
+
+  Usuario.findOne(filter).then((userResult) => {
+    if (userResult) {
+      userResult.rol = req.body.rol;
+      userResult.estado = req.body.estado;
+      userResult.save().then(() => {
+        res.status(201).json("Usuario actualizado satisfactoriamente");
+      });
+    } else {
+      res.status(404).json("Usuario no encontrado");
+    }
+  });
 };
