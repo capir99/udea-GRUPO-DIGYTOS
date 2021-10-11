@@ -24,6 +24,8 @@ function App() {
 
   return (
     <div className="App">
+      <br></br>
+
       <Router>
         <Switch>
           <Route path="/" exact>

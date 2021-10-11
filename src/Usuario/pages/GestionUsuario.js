@@ -2,7 +2,6 @@ import Menu from "../../Shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 
-
 const GestionUsuario = ({ isLoggedIn, login }) => {
   //hooks para actualizar lista de usuarios, usuario seleccionado y visibilidad de la pantalla modal
   const [usuarios, setUsuarios] = useState([]);
@@ -89,7 +88,22 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
     handleClose();
   };
 
+  const alertaEstado = (estado) => {
+    if (estado) {
+      switch (estado) {
+        case "Pendiente":
+          return "bg-warning text-dark";
+        case "Autorizado":
+          return "bg-success text-white";
+        case "No autorizado":
+          return "bg-danger text-white";
+        default:
+          break;
+      }
+    }
 
+    return "bg-warning text-dark";
+  };
   // Return de componente a renderizar
   return (
     <div>
@@ -134,7 +148,9 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                               <td>{usuario.login}</td>
                               <td>{usuario.fullName}</td>
                               <td>{usuario.rol}</td>
-                              <td>{usuario.estado}</td>
+                              <td className={alertaEstado(usuario.estado)}>
+                                {usuario.estado}
+                              </td>
                               <td>
                                 <Button
                                   id={usuario._id}
@@ -150,7 +166,6 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                         })}
                       </tbody>
                     </table>
-
                   </Form.Group>
                 </Form>
 
