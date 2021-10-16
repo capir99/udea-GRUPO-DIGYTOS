@@ -1,16 +1,16 @@
 import "./css/App.css";
 import "./css/estilos.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./Shared/components/Header";
-import ContentLogin from "./Shared/pages/ContentLogin";
-import ContentHome from "./Shared/pages/ContentHome";
+import Header from "./shared/components/Header";
+import ContentLogin from "./shared/pages/ContentLogin";
+import ContentHome from "./shared/pages/ContentHome";
 import GestionUsuario from "./Usuario/pages/GestionUsuario";
-import GestionProducto from "./Producto/pages/GestionProducto";
-import RegistroProducto from "./Producto/pages/RegistroProducto";
-import GestionaVenta from "./Venta/pages/GestionVenta";
-import RegistroVenta from "./Venta/pages/RegistroVenta";
-import Error from "./Shared/pages/Error";
-import SinAutorizacion from "./Shared/pages/SinAutorizacion";
+import GestionProducto from "./producto/pages/GestionProducto";
+import RegistroProducto from "./producto/pages/RegistroProducto";
+import GestionaVenta from "./venta/pages/GestionVenta";
+import RegistroVenta from "./venta/pages/RegistroVenta";
+import Error from "./shared/pages/Error";
+import SinAutorizacion from "./shared/pages/SinAutorizacion";
 
 import {
   BrowserRouter as Router,

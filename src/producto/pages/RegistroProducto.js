@@ -1,4 +1,4 @@
-import Menu from "../../Shared/components/Menu";
+import Menu from "../../shared/components/Menu";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";

@@ -1,9 +1,9 @@
-import Menu from "../../Shared/components/Menu";
+import Menu from "../../shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import Image from "react-bootstrap/Image";
-import editar from "../../Shared/assets//edit.svg";
-import borrar from "../../Shared/assets//delete.svg";
+import editar from "../../shared/assets//edit.svg";
+import borrar from "../../shared/assets//delete.svg";
 
 const GestionUsuario = () => {
   //hooks para actualizar lista de usuarios, usuario seleccionado y visibilidad de la pantalla modal
