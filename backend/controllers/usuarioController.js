@@ -7,7 +7,7 @@ exports.getUsuarios = (req, res) => {
   });
 };
 
-//metodo para crear un nuevo usuario con rol vendedor
+//metodo para crear un nuevo usuario con rol vendedor por defecto
 exports.addUsuario = (req, res) => {
   const usuario = new Usuario({
     login: req.body.login,
@@ -16,8 +16,15 @@ exports.addUsuario = (req, res) => {
     rol: "Vendedor",
   });
   usuario.save().then((createdUser) => {
-    console.log(createdUser);
     res.status(201).json("Usuario creado satisfactoriamente");
+  });
+};
+
+//metodo para eliminar un usuario
+exports.removeUsuario = (req, res) => {
+  const filter = { _id: req.params.id };
+  Usuario.deleteOne(filter).then(() => {
+    res.status(201).json("Usuario eliminado satisfactoriamente");
   });
 };
 

@@ -41,8 +41,10 @@ const Content = () => {
               "http://localhost:3002/api/usuarios/search/" + decodedToken.email
             );
             const datos = await response.json();
-            localStorage.setItem("rol", datos[0].rol);
-            localStorage.setItem("estado", datos[0].estado);
+            if (datos[0]) {
+              localStorage.setItem("rol", datos[0].rol);
+              localStorage.setItem("estado", datos[0].estado);
+            }
           }
           const decodedToken = jwt.decode(
             localStorage.getItem("token"),

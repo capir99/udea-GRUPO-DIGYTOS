@@ -1,8 +1,11 @@
 import Menu from "../../Shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
+import Image from "react-bootstrap/Image";
+import editar from "../../Shared/assets//edit.svg";
+import borrar from "../../Shared/assets//delete.svg";
 
-const GestionUsuario = ({ isLoggedIn, login }) => {
+const GestionUsuario = () => {
   //hooks para actualizar lista de usuarios, usuario seleccionado y visibilidad de la pantalla modal
   const [usuarios, setUsuarios] = useState([]);
   const [usuarioSel, setusuarioSel] = useState([]);
@@ -64,6 +67,21 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
     handleShow();
   };
 
+  //Función para eliminar un usuario seleccionado desde la tabla
+  const usuarioEliminar = (e) => {
+    async function fetchData() {
+      const config = {
+        method: "DELETE",
+      };
+      const response = await fetch(
+        "http://localhost:3002/api/usuarios/remove/" + e.target.id,
+        config
+      );
+      await response.json();
+    }
+    fetchData();
+  };
+
   //Función para consultar el usuario a partir de su Email seleccionado desde el campo de entrada superior
   const usuarioEmailSeleccion = (e) => {
     setFiltro(e.target.value);
@@ -122,7 +140,7 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
       <Container>
         <Row>
           <Col xs={3}>
-            <Menu isLoggedIn={isLoggedIn} login={login} />
+            <Menu />
           </Col>
           <Col xs={8}>
             <div className="row justify-content-center">
@@ -166,14 +184,41 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                                 {usuario.estado}
                               </td>
                               <td>
-                                <Button
-                                  id={usuario._id}
-                                  type="button"
-                                  className="btn btn-primary"
-                                  onClick={usuarioSeleccion}
-                                >
-                                  Actualizar
-                                </Button>
+                                <table className="table col-5 col-s-12">
+                                  <thead></thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <Button
+                                          id={usuario._id}
+                                          type="button"
+                                          className="btn btn-primary"
+                                          onClick={usuarioSeleccion}
+                                        >
+                                          <Image
+                                            src={editar}
+                                            rounded
+                                            id={usuario._id}
+                                          />
+                                        </Button>
+                                      </td>
+
+                                      <td>
+                                        <Button
+                                          type="button"
+                                          className="btn btn-primary"
+                                          onClick={usuarioEliminar}
+                                        >
+                                          <Image
+                                            src={borrar}
+                                            rounded
+                                            id={usuario._id}
+                                          />
+                                        </Button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
                               </td>
                             </tr>
                           );

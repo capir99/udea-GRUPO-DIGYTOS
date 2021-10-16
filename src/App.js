@@ -7,7 +7,7 @@ import ContentHome from "./Shared/pages/ContentHome";
 import GestionUsuario from "./Usuario/pages/GestionUsuario";
 import GestionProducto from "./Producto/pages/GestionProducto";
 import RegistroProducto from "./Producto/pages/RegistroProducto";
-import GestionVenta from "./Venta/pages/GestionVenta";
+import GestionaVenta from "./Venta/pages/GestionVenta";
 import RegistroVenta from "./Venta/pages/RegistroVenta";
 import Error from "./Shared/pages/Error";
 import SinAutorizacion from "./Shared/pages/SinAutorizacion";
@@ -70,16 +70,39 @@ function App() {
             }}
           />
 
-          <Route path="/registroVenta" exact>
-            <Header />
-            <RegistroVenta />
-          </Route>
+          <Route
+            exact
+            path="/registroVenta"
+            render={() => {
+              if (estado === "Autorizado") {
+                return (
+                  <div>
+                    <Header />
+                    <RegistroVenta />
+                  </div>
+                );
+              } else {
+                return <Redirect to="/SinAutorizacion" />;
+              }
+            }}
+          />
 
-          <Route path="/gestionVenta" exact>
-            <Header />
-            <GestionVenta />
-          </Route>
-
+          <Route
+            exact
+            path="/gestionVenta"
+            render={() => {
+              if (estado === "Autorizado") {
+                return (
+                  <div>
+                    <Header />
+                    <GestionaVenta />
+                  </div>
+                );
+              } else {
+                return <Redirect to="/SinAutorizacion" />;
+              }
+            }}
+          />
           <Route
             exact
             path="/gestionUsuario"

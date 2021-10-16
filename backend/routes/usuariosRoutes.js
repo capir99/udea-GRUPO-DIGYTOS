@@ -8,6 +8,8 @@ const auth = require("../middleware/auth");
 router.get("/list", auth, usuarioController.getUsuarios);
 //Crear Usuario
 router.post("/add", usuarioController.addUsuario);
+//Eliminar usuario
+router.delete("/remove/:id", usuarioController.removeUsuario);
 //Actualizar Usuario
 router.post("/modify/:id", usuarioController.modifyUsuario);
 //Consultar Usuario por Login
