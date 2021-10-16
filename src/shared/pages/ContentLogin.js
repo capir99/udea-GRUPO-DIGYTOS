@@ -4,6 +4,7 @@ import logo from "../../logo.png";
 import gmail from "../../img/gmail.png";
 import GoogleLogin from "react-google-login";
 import { useHistory } from "react-router-dom";
+const jwt = require("jsonwebtoken");
 
 const Content = () => {
   localStorage.removeItem("token"); //retira cualquier token de autenticación que exista
@@ -32,6 +33,26 @@ const Content = () => {
           await response.json();
         }
         validarUsuario();
+
+        //Identificación del rol
+        if (localStorage.getItem("token")) {
+          async function fetchData() {
+            const response = await fetch(
+              "http://localhost:3002/api/usuarios/search/" + decodedToken.email
+            );
+            const datos = await response.json();
+            localStorage.setItem("rol", datos[0].rol);
+            localStorage.setItem("estado", datos[0].estado);
+          }
+          const decodedToken = jwt.decode(
+            localStorage.getItem("token"),
+            process.env.JWT_KEY
+          );
+
+          if (decodedToken) {
+            fetchData();
+          }
+        }
 
         history.push("/home");
       }

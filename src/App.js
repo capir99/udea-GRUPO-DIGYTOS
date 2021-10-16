@@ -10,6 +10,7 @@ import RegistroProducto from "./Producto/pages/RegistroProducto";
 import GestionVenta from "./Venta/pages/GestionVenta";
 import RegistroVenta from "./Venta/pages/RegistroVenta";
 import Error from "./Shared/pages/Error";
+import SinAutorizacion from "./Shared/pages/SinAutorizacion";
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,8 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const rol = localStorage.getItem("rol");
+  const estado = localStorage.getItem("estado");
   return (
     <div className="App">
       <Router>
@@ -33,15 +36,39 @@ function App() {
             <ContentHome />
           </Route>
 
-          <Route path="/registroProducto" exact>
-            <Header />
-            <RegistroProducto />
-          </Route>
+          <Route
+            exact
+            path="/registroProducto"
+            render={() => {
+              if (rol === "Administrador" && estado === "Autorizado") {
+                return (
+                  <div>
+                    <Header />
+                    <RegistroProducto />
+                  </div>
+                );
+              } else {
+                return <Redirect to="/SinAutorizacion" />;
+              }
+            }}
+          />
 
-          <Route path="/gestionProducto" exact>
-            <Header />
-            <GestionProducto />
-          </Route>
+          <Route
+            exact
+            path="/gestionProducto"
+            render={() => {
+              if (rol === "Administrador" && estado === "Autorizado") {
+                return (
+                  <div>
+                    <Header />
+                    <GestionProducto />
+                  </div>
+                );
+              } else {
+                return <Redirect to="/SinAutorizacion" />;
+              }
+            }}
+          />
 
           <Route path="/registroVenta" exact>
             <Header />
@@ -53,9 +80,23 @@ function App() {
             <GestionVenta />
           </Route>
 
-          <Route path="/gestionUsuario" exact>
-            <Header />
-            <GestionUsuario />
+          <Route
+            exact
+            path="/gestionUsuario"
+            render={() =>
+              rol === "Administrador" ? (
+                <div>
+                  <Header />
+                  <GestionUsuario />
+                </div>
+              ) : (
+                <Redirect to="/SinAutorizacion" />
+              )
+            }
+          />
+
+          <Route path="/SinAutorizacion" exact>
+            <SinAutorizacion />
           </Route>
 
           <Route path="/error" exact>
