@@ -3,9 +3,9 @@ import Image from "react-bootstrap/Image";
 import auth from "../assets//auth.svg";
 import Nav from "react-bootstrap/Nav";
 
-const NavLogin = ({ login }) => {
+const NavLogin = () => {
   const disableLogin = () => {
-    login(false);
+    localStorage.removeItem('token');
   };
   return (
     <div className="row">

@@ -18,20 +18,34 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
   };
 
   // funciones para actualizar el valor seleccionado de las listas desplegables rol y estado
-  const handleRolChange = (event) => {
-    usuarioSel.rol = event.target.value;
+  const handleRolChange = (e) => {
+    usuarioSel.rol = e.target.value;
   };
-  const handleEstadoChange = (event) => {
-    usuarioSel.estado = event.target.value;
+
+  const handleEstadoChange = (e) => {
+    usuarioSel.estado = e.target.value;
   };
 
   //Función para consultar todos los usuarios
   useEffect(() => {
     async function fetchData() {
+      const token = localStorage.getItem("token");
+      const config = {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      };
       if (filtro.length === 0) {
-        const response = await fetch("http://localhost:3002/api/usuarios/list");
+        const response = await fetch(
+          "http://localhost:3002/api/usuarios/list",
+          config
+        );
         const data = await response.json();
-        setUsuarios(data);
+        if (data) {
+          setUsuarios(data);
+        }
       }
     }
     fetchData();
@@ -50,18 +64,16 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
     handleShow();
   };
 
-  //Función para consultar el usuario a partir de su login seleccionado desde el campo de entrada superior
-  const usuarioLoginSeleccion = (e) => {
+  //Función para consultar el usuario a partir de su Email seleccionado desde el campo de entrada superior
+  const usuarioEmailSeleccion = (e) => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
         "http://localhost:3002/api/usuarios/search/" + e.target.value
       );
       const datos = await response.json();
-      console.log(datos);
       if (datos !== "Usuario no encontrado") {
         setUsuarios(datos);
-        console.log(usuarios);
       } else {
         setUsuarios([]);
       }
@@ -120,8 +132,8 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                   <Form.Group className="mb-3">
                     <Form.Control
                       type="text"
-                      placeholder="Login de usuario"
-                      onChange={usuarioLoginSeleccion}
+                      placeholder="Email de usuario"
+                      onChange={usuarioEmailSeleccion}
                     />
                   </Form.Group>
 
@@ -134,7 +146,8 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                         <tr>
                           <th scope="col">No.</th>
                           <th scope="col">login</th>
-                          <th scope="col">fullName</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Email</th>
                           <th scope="col">Rol</th>
                           <th scope="col">Estado</th>
                           <th scope="col">Acción</th>
@@ -143,10 +156,11 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
                       <tbody>
                         {usuarios.map((usuario, index) => {
                           return (
-                            <tr>
+                            <tr key={index + 1}>
                               <th scope="row">{index + 1}</th>
                               <td>{usuario.login}</td>
                               <td>{usuario.fullName}</td>
+                              <td>{usuario.email}</td>
                               <td>{usuario.rol}</td>
                               <td className={alertaEstado(usuario.estado)}>
                                 {usuario.estado}
@@ -186,11 +200,15 @@ const GestionUsuario = ({ isLoggedIn, login }) => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Código</Form.Label>
-              <Form.Control type="text" value={usuarioSel._id} disabled />
+              <Form.Control type="text" placeholder={usuarioSel._id} readOnly />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Nombre Completo</Form.Label>
-              <Form.Control type="text" value={usuarioSel.fullName} disabled />
+              <Form.Control
+                type="text"
+                placeholder={usuarioSel.fullName}
+                readOnly
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Rol</Form.Label>

@@ -4,16 +4,16 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import logo from "../../logo.png";
 
-
-const ContentHome = ({ isLoggedIn, login }) => {
+const ContentHome = () => {
+  
   return (
     <div>
       <Container>
         <Row>
           <Col xs={1}>
-            <Menu isLoggedIn={isLoggedIn} login={login} />
+            <Menu />
           </Col>
-          <Col xs={1}/>
+          <Col xs={1} />
           <Col xs={9}>
             <div className="d-flex justify-content-center mt-5">
               <img

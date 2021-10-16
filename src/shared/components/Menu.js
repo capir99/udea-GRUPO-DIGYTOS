@@ -7,8 +7,7 @@ import list from "../assets//list.svg";
 import users from "../assets//users.svg";
 import Image from "react-bootstrap/Image";
 
-const Menu = ({ isLoggedIn, login }) => {
-  login(true);
+const Menu = () => {
   return (
     <div>
       <Nav defaultActiveKey="/home" className="flex-column">

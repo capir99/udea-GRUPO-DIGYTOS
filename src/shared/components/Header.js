@@ -3,8 +3,9 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-const Header = ({ isLoggedIn, login }) => {
-  if (isLoggedIn) {
+const Header = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
     return (
       <div className="header">
         <Container>
@@ -14,7 +15,7 @@ const Header = ({ isLoggedIn, login }) => {
               <h1>SISTEMA DE GESTIÓN DE VENTAS</h1>
             </Col>
             <Col xs={2}>
-              <NavLogin login={login} />
+              <NavLogin />
             </Col>
           </Row>
         </Container>

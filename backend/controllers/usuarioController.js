@@ -32,9 +32,9 @@ exports.getUsuarioById = (req, res) => {
   });
 };
 
-//metodo para consultar un usuario por su Login
-exports.getUsuarioByLogin = (req, res) => {
-  const filter = { login: { $regex: "^" + req.params.login, $options: "i" } };
+//metodo para consultar un usuario por su Email
+exports.getUsuarioByEmail = (req, res) => {
+  const filter = { email: { $regex: "^" + req.params.email, $options: "i" } };
 
   Usuario.find(filter).then((userResult) => {
     if (userResult) {

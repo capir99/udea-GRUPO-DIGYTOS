@@ -3,15 +3,37 @@ import { Link } from "react-router-dom";
 import logo from "../../logo.png";
 import gmail from "../../img/gmail.png";
 import GoogleLogin from "react-google-login";
+import { useHistory } from "react-router-dom";
 
-const Content = ({ isLoggedIn, login }) => {
- 
+const Content = () => {
+  localStorage.removeItem("token"); //retira cualquier token de autenticación que exista
 
+  const history = useHistory();
   const respuestaGoogle = (respuesta) => {
     if (respuesta) {
       if (!respuesta.error) {
-        login(true);
-        window.location.href = "/home";
+        localStorage.setItem("token", respuesta.tokenId);
+
+        //Función para consultar si el usuario ya existe en el sistema
+        async function validarUsuario() {
+          const token = localStorage.getItem("token");
+          const config = {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          };
+
+          const response = await fetch(
+            "http://localhost:3002/api/usuarios/list",
+            config
+          );
+          await response.json();
+        }
+        validarUsuario();
+
+        history.push("/home");
       }
     }
   };
