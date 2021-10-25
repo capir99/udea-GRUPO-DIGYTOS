@@ -16,6 +16,8 @@ mongoose.connect(process.env.MONGODB_CONNECT).then(() => {
   console.log("Base de datos conectada!!!");
 });
 
+
+
 //metodo conexión 2
 // const connectDB = async () => {
 //   await mongoose.connect(URI, {

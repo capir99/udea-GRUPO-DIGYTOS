@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 
 function App() {
+  console.log("Entre");
   const rol = localStorage.getItem("rol");
   const estado = localStorage.getItem("estado");
   return (
@@ -132,4 +133,5 @@ function App() {
   );
 }
 
+console.log(localStorage.getItem("rol")); 
 export default App;
