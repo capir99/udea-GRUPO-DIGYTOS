@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+require("dotenv").config();
+
 const usuarioRoutes = require("./routes/usuariosRoutes");
 const productoRoutes = require("./routes/productosRoutes");
 const ventaRoutes = require("./routes/ventasRoutes");
@@ -7,8 +9,8 @@ var cors = require("cors");
 
 //Conexión base de datos
 const mongoose = require("mongoose");
-const URI =
-  "mongodb+srv://webapp_conn:Digytos2021@cluster0.dssyh.mongodb.net/digytosDB?retryWrites=true&w=majority";
+const URI = process.env.MONGODB_CONNECT
+  
 //metodo conexión 1
 mongoose.connect(URI).then(() => {
   console.log("Base de datos conectada!!!");
