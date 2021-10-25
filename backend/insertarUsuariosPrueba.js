@@ -38,7 +38,7 @@ const us4 = new User({
   login: "sniño",
   fullName: "Samuel Niño",
   pass: "sniño2021",
-  rol: "Vendedor",
+  rol: "Administrador",
 });
 const us5 = new User({
   login: "jcortes",
