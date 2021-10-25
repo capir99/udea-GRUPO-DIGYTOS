@@ -31,7 +31,7 @@ const RegistroVenta = () => {
         body: JSON.stringify(venta),
       };
       if (venta) {
-        await fetch("http://localhost:3002/api/ventas/add/", config);
+        await fetch("https://udeagrupodigytos.herokuapp.com/api/ventas/add/", config);
         history.push("/gestionVenta");
       }
     }
@@ -50,7 +50,7 @@ const RegistroVenta = () => {
         },
       };
       const response = await fetch(
-        "http://localhost:3002/api/productos/list",
+        "https://udeagrupodigytos.herokuapp.com/api/productos/list",
         config
       );
       const data = await response.json();

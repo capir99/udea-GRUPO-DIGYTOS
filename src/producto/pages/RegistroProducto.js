@@ -29,7 +29,7 @@ const RegistroProducto = () => {
         body: JSON.stringify(producto),
       };
       if (producto) {
-        await fetch("http://localhost:3002/api/productos/add/", config);
+        await fetch("https://udeagrupodigytos.herokuapp.com/api/productos/add/", config);
         history.push("/gestionProducto");
       }
     }
