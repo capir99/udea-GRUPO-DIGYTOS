@@ -74,7 +74,7 @@ const GestionUsuario = () => {
         method: "DELETE",
       };
       const response = await fetch(
-        "https://udeagrupodigytos.herokuapp.com/api/usuarios/remove/" + e.target.id,
+        "https://udeagrupodigytos.herokuapp.com/usuarios/remove/" + e.target.id,
         config
       );
       await response.json();
@@ -87,7 +87,7 @@ const GestionUsuario = () => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
-        "https://udeagrupodigytos.herokuapp.com/api/usuarios/search/" + e.target.value
+        "https://udeagrupodigytos.herokuapp.com/usuarios/search/" + e.target.value
       );
       const datos = await response.json();
       if (datos !== "Usuario no encontrado") {
@@ -112,7 +112,7 @@ const GestionUsuario = () => {
         },
         body: JSON.stringify(usuarioSel),
       };
-      await fetch("https://udeagrupodigytos.herokuapp.com/api/usuarios/modify/" + id, config);
+      await fetch("https://udeagrupodigytos.herokuapp.com/usuarios/modify/" + id, config);
     }
     fetchData();
     handleClose();

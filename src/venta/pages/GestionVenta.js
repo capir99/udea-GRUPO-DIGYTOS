@@ -47,7 +47,7 @@ const GestionVenta = () => {
       };
       if (filtro.length === 0) {
         const response = await fetch(
-          "http://localhost:3002/api/ventas/list",
+          "https://udeagrupodigytos.herokuapp.com/ventas/list",
           config
         );
         const data = await response.json();
@@ -92,7 +92,7 @@ const GestionVenta = () => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3002/api/ventas/search/" + e.target.value
+        "https://udeagrupodigytos.herokuapp.com/api/ventas/search/" + e.target.value
       );
       const datos = await response.json();
       if (datos !== "Venta no encontrada") {
