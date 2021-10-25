@@ -104,20 +104,12 @@ function App() {
               }
             }}
           />
-          <Route
-            exact
-            path="/gestionUsuario"
-            render={() =>
-              rol === "Administrador" ? (
-                <div>
-                  <Header />
-                  <GestionUsuario />
-                </div>
-              ) : (
-                <Redirect to="/SinAutorizacion" />
-              )
-            }
-          />
+<Route exact path="/gestionUsuario">
+<div>
+            <Header />
+            <GestionUsuario />
+</div>
+          </Route>
 
           <Route path="/SinAutorizacion" exact>
             <SinAutorizacion />
