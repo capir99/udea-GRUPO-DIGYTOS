@@ -9,10 +9,10 @@ var cors = require("cors");
 
 //Conexión base de datos
 const mongoose = require("mongoose");
-const URI = process.env.MONGODB_CONNECT
+//const URI = process.env.MONGODB_CONNECT
   
 //metodo conexión 1
-mongoose.connect(URI).then(() => {
+mongoose.connect(process.env.MONGODB_CONNECT).then(() => {
   console.log("Base de datos conectada!!!");
 });
 
