@@ -27,7 +27,7 @@ const Content = () => {
           };
 
           const response = await fetch(
-            "http://localhost:3002/api/usuarios/list",
+            "https://udeagrupodigytos.herokuapp.com/api/usuarios/list",
             config
           );
           await response.json();
@@ -38,7 +38,7 @@ const Content = () => {
         if (localStorage.getItem("token")) {
           async function fetchData() {
             const response = await fetch(
-              "http://localhost:3002/api/usuarios/search/" + decodedToken.email
+              "https://udeagrupodigytos.herokuapp.com/api/usuarios/search/" + decodedToken.email
             );
             const datos = await response.json();
             if (datos[0]) {
