@@ -79,7 +79,7 @@ const GestionVenta = () => {
         method: "DELETE",
       };
       const response = await fetch(
-        "http://localhost:3002/api/ventas/remove/" + e.target.id,
+        "https://udeagrupodigytos.herokuapp.com/api/ventas/remove/" + e.target.id,
         config
       );
       await response.json();
@@ -92,7 +92,7 @@ const GestionVenta = () => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3002/api/ventas/search/" + e.target.value
+        "https://udeagrupodigytos.herokuapp.com/api/ventas/search/" + e.target.value
       );
       const datos = await response.json();
       if (datos !== "Venta no encontrada") {
@@ -117,7 +117,7 @@ const GestionVenta = () => {
         },
         body: JSON.stringify(ventaSel),
       };
-      await fetch("http://localhost:3002/api/ventas/modify/" + id, config);
+      await fetch("https://udeagrupodigytos.herokuapp.com/api/ventas/modify/" + id, config);
     }
     fetchData();
     handleClose();
