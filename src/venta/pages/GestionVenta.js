@@ -1,11 +1,16 @@
-import Menu from "../../Shared/components/Menu";
+import Menu from "../../shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import Image from "react-bootstrap/Image";
+<<<<<<< HEAD
 import editar from "../../Shared/assets//edit.svg";
 import borrar from "../../Shared/assets//delete.svg";
 import "../../css/myModal.css";
 import Swal from "sweetalert2";
+=======
+import editar from "../../shared/assets//edit.svg";
+import borrar from "../../shared/assets//delete.svg";
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
 
 const GestionVenta = () => {
   //Hooks para actualizar lista de ventas, venta seleccionada, productos asociados a una venta y filtro
@@ -119,7 +124,12 @@ const GestionVenta = () => {
     if (cantidadRequerida <= disponible) {
       async function fetchData() {
         const response = await fetch(
+<<<<<<< HEAD
           "https://digytosback.herokuapp.com/api/products/" + productoSel
+=======
+          "https://udeagrupodigytos.herokuapp.com/api/ventas/list",
+          config
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
         );
         const data = await response.json();
         if (data) {
@@ -159,7 +169,11 @@ const GestionVenta = () => {
   const ventaSeleccion = (e) => {
     async function fetchDataVenta() {
       const response = await fetch(
+<<<<<<< HEAD
         "https://digytosback.herokuapp.com/api/sales/" + e.target.id
+=======
+        "https://udeagrupodigytos.herokuapp.com/api/ventas/" + e.target.id
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
       );
       const data = await response.json();
       if (data) {

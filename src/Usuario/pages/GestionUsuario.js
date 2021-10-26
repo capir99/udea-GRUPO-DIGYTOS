@@ -1,9 +1,9 @@
-import Menu from "../../Shared/components/Menu";
+import Menu from "../../shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import Image from "react-bootstrap/Image";
-import editar from "../../Shared/assets//edit.svg";
-import borrar from "../../Shared/assets//delete.svg";
+import editar from "../../shared/assets//edit.svg";
+import borrar from "../../shared/assets//delete.svg";
 
 const GestionUsuario = () => {
   //hooks para actualizar lista de usuarios, usuario seleccionado y visibilidad de la pantalla modal
@@ -42,7 +42,11 @@ const GestionUsuario = () => {
       };
       if (filtro.length === 0) {
         const response = await fetch(
+<<<<<<< HEAD
           "https://digytosback.herokuapp.com/api/users/list",
+=======
+          "https://udeagrupodigytos.herokuapp.com/api/usuarios/list",
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
           config
         );
         const data = await response.json();
@@ -58,7 +62,11 @@ const GestionUsuario = () => {
   const usuarioSeleccion = (e) => {
     async function fetchData() {
       const response = await fetch(
+<<<<<<< HEAD
         "https://digytosback.herokuapp.com/api/users/" + e.target.id
+=======
+        "https://udeagrupodigytos.herokuapp.com/api/usuarios/" + e.target.id
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
       );
       const data = await response.json();
       setusuarioSel(data);
@@ -74,7 +82,11 @@ const GestionUsuario = () => {
         method: "DELETE",
       };
       const response = await fetch(
+<<<<<<< HEAD
         "https://digytosback.herokuapp.com/api/users/remove/" + e.target.id,
+=======
+        "https://udeagrupodigytos.herokuapp.com/api/usuarios/remove/" + e.target.id,
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
         config
       );
       await response.json();
@@ -87,7 +99,11 @@ const GestionUsuario = () => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
+<<<<<<< HEAD
         "https://digytosback.herokuapp.com/api/users/search/" + e.target.value
+=======
+        "https://udeagrupodigytos.herokuapp.com/api/usuarios/search/" + e.target.value
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
       );
       const datos = await response.json();
       if (datos !== "Usuario no encontrado") {
@@ -112,10 +128,14 @@ const GestionUsuario = () => {
         },
         body: JSON.stringify(usuarioSel),
       };
+<<<<<<< HEAD
       await fetch(
         "https://digytosback.herokuapp.com/api/users/modify/" + id,
         config
       );
+=======
+      await fetch("https://udeagrupodigytos.herokuapp.com/api/usuarios/modify/" + id, config);
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
     }
     fetchData();
     handleClose();

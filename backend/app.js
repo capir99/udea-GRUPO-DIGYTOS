@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+require("dotenv").config();
+
 const usuarioRoutes = require("./routes/usuariosRoutes");
 const productoRoutes = require("./routes/productosRoutes");
 const ventaRoutes = require("./routes/ventasRoutes");
@@ -9,6 +11,7 @@ require("dotenv").config();
 
 //Conexión base de datos
 const mongoose = require("mongoose");
+<<<<<<< HEAD
 const URI = process.env.MONGODB_CONNECT;
 
 //metodo conexión 1
@@ -19,6 +22,16 @@ try {
 } catch (error) {
   console.log("El error es: " + error);
 }
+=======
+//const URI = process.env.MONGODB_CONNECT
+  
+//metodo conexión 1
+mongoose.connect(process.env.MONGODB_CONNECT).then(() => {
+  console.log("Base de datos conectada!!!");
+});
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
+
+
 
 //metodo conexión 2
 // const connectDB = async () => {

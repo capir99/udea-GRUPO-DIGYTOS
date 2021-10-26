@@ -27,7 +27,11 @@ const Content = () => {
           };
 
           const response = await fetch(
+<<<<<<< HEAD
             "https://digytosback.herokuapp.com/api/users/list",
+=======
+            "https://udeagrupodigytos.herokuapp.com/api/usuarios/list",
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
             config
           );
           await response.json();
@@ -38,8 +42,12 @@ const Content = () => {
         if (localStorage.getItem("token")) {
           async function fetchData() {
             const response = await fetch(
+<<<<<<< HEAD
               "https://digytosback.herokuapp.com/api/users/search/" +
                 decodedToken.email
+=======
+              "https://udeagrupodigytos.herokuapp.com/api/usuarios/search/" + decodedToken.email
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
             );
             const datos = await response.json();
             if (datos[0]) {

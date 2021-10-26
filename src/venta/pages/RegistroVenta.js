@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import Menu from "../../Shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
+=======
+import Menu from "../../shared/components/Menu";
+import { Container, Col, Row, Form, Button } from "react-bootstrap";
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Image from "react-bootstrap/Image";
@@ -147,6 +152,7 @@ const RegistroVenta = () => {
         body: JSON.stringify(venta),
       };
       if (venta) {
+<<<<<<< HEAD
         const response = await fetch(
           "https://digytosback.herokuapp.com/api/sales/add/",
           config
@@ -155,6 +161,10 @@ const RegistroVenta = () => {
         if (idVenta) {
           registraproductos(idVenta);
         }
+=======
+        await fetch("https://udeagrupodigytos.herokuapp.com/api/ventas/add/", config);
+        history.push("/gestionVenta");
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
       }
     }
 
@@ -194,7 +204,11 @@ const RegistroVenta = () => {
         body: JSON.stringify(Prod),
       };
       const response = await fetch(
+<<<<<<< HEAD
         "https://digytosback.herokuapp.com/api/products/modify/" + Prod._id,
+=======
+        "https://udeagrupodigytos.herokuapp.com/api/productos/list",
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
         config
       );
       await response.json();

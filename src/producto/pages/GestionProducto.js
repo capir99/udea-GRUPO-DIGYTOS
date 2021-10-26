@@ -1,10 +1,15 @@
-import Menu from "../../Shared/components/Menu";
+import Menu from "../../shared/components/Menu";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import Image from "react-bootstrap/Image";
+<<<<<<< HEAD
 import editar from "../../Shared/assets//edit.svg";
 import borrar from "../../Shared/assets//delete.svg";
 import Swal from "sweetalert2";
+=======
+import editar from "../../shared/assets//edit.svg";
+import borrar from "../../shared/assets//delete.svg";
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
 
 const GestionProducto = () => {
   //Hooks para contener la lista de productos existentes, producto seleccionado de la tabla y filtro de búsqueda
@@ -48,7 +53,36 @@ const GestionProducto = () => {
     setShow(false);
   };
 
+<<<<<<< HEAD
   //Función para consultar el producto seleccionado desde la tabla
+=======
+  //Función para consultar todos los productos
+  useEffect(() => {
+    async function fetchData() {
+      const token = localStorage.getItem("token");
+      const config = {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      };
+      if (filtro.length === 0) {
+        const response = await fetch(
+          "https://udeagrupodigytos.herokuapp.com/api/productos/list",
+          config
+        );
+        const data = await response.json();
+        if (data) {
+          setProductos(data);
+        }
+      }
+    }
+    fetchData();
+  });
+
+  //Función para consultar el producto a partir de su id seleccionado desde la tabla
+>>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
   const productoSeleccion = (e) => {
     async function fetchData() {
       const response = await fetch(
