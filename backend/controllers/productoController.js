@@ -2,9 +2,33 @@ const Producto = require("../models/productoModel");
 
 //metodo para listar los productos
 exports.getProductos = (req, res) => {
-  Producto.find().then((postResult) => {
-    res.status(200).json(postResult);
-  });
+  Producto.find()
+    .then((postResult) => {
+      if (postResult) {
+        res.status(200).json(postResult);
+      } else {
+        res.status(404).json("Sin productos");
+      }
+    })
+    .catch((err) => {
+      console.log("error:", err);
+    });
+};
+
+//metodo para listar los productos en Stock
+exports.getProductosStock = (req, res) => {
+  const filter = { quantity: { $gt: 0 } };
+  Producto.find(filter)
+    .then((postResult) => {
+      if (postResult) {
+        res.status(200).json(postResult);
+      } else {
+        res.status(404).json("Sin productos");
+      }
+    })
+    .catch((err) => {
+      console.log("error:", err);
+    });
 };
 
 //metodo para crear un nuevo producto

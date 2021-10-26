@@ -4,35 +4,43 @@ import React, { useState, useEffect } from "react";
 import Image from "react-bootstrap/Image";
 import editar from "../../Shared/assets//edit.svg";
 import borrar from "../../Shared/assets//delete.svg";
+import Swal from "sweetalert2";
 
 const GestionProducto = () => {
-  //hooks para actualizar lista de productos, producto seleccionado y visibilidad de la pantalla modal
+  //Hooks para contener la lista de productos existentes, producto seleccionado de la tabla y filtro de búsqueda
   const [productos, setProductos] = useState([]);
   const [productoSel, setproductoSel] = useState([]);
   const [filtro, setFiltro] = useState("");
-  const [show, setShow] = useState(false);
 
+  //Contantes para establecer el formato de dinero pesos COP
+  const options2 = { style: "currency", currency: "COP" };
+  const moneyFormat = new Intl.NumberFormat("es-CO", options2);
+
+  //Función para registrar cambio en los campos del formulario
   const handleChange = (event) => {
     setproductoSel({ ...productoSel, [event.target.name]: event.target.value });
-    console.log(productoSel);
   };
 
-  const colorAlertaEstado = (estado) => {
-    if (estado > 0) {
+  //Función para pintar la alerta color disponibilidad de producto dependiendo de su cantidad
+  const colorAlertaEstado = (cantidadProducto) => {
+    if (cantidadProducto > 0) {
       return "bg-success text-white";
     } else {
       return "bg-danger text-white";
     }
   };
-  const alertaEstado = (estado) => {
-    if (estado > 0) {
+
+  //Función para establecer si un prudunto esta disponible o no dependiendo de su cantidad
+  const alertaEstado = (cantidadProducto) => {
+    if (cantidadProducto > 0) {
       return "Disponible";
     } else {
       return "No disponible";
     }
   };
 
-  // funciones visibilidad de la pantalla modal
+  //Hooks y funciones para controlar visibilidad de la pantalla modal al editar un producto
+  const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(true);
   };
@@ -40,36 +48,11 @@ const GestionProducto = () => {
     setShow(false);
   };
 
-  //Función para consultar todos los productos
-  useEffect(() => {
-    async function fetchData() {
-      const token = localStorage.getItem("token");
-      const config = {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      };
-      if (filtro.length === 0) {
-        const response = await fetch(
-          "http://localhost:3002/api/productos/list",
-          config
-        );
-        const data = await response.json();
-        if (data) {
-          setProductos(data);
-        }
-      }
-    }
-    fetchData();
-  });
-
-  //Función para consultar el producto a partir de su id seleccionado desde la tabla
+  //Función para consultar el producto seleccionado desde la tabla
   const productoSeleccion = (e) => {
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3002/api/productos/" + e.target.id
+        "https://digytosback.herokuapp.com/api/products/" + e.target.id
       );
       const data = await response.json();
       setproductoSel(data);
@@ -85,7 +68,7 @@ const GestionProducto = () => {
         method: "DELETE",
       };
       const response = await fetch(
-        "http://localhost:3002/api/productos/remove/" + e.target.id,
+        "https://digytosback.herokuapp.com/api/products/remove/" + e.target.id,
         config
       );
       await response.json();
@@ -93,12 +76,13 @@ const GestionProducto = () => {
     fetchData();
   };
 
-  //Función para consultar el producto a partir de su código seleccionado desde el campo de entrada superior
+  //Función para consultar el producto a partir de su código seleccionado desde el filtro
+  //ubicado en la parte superior de la pantalla
   const productoCodeSeleccion = (e) => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3002/api/productos/search/" + e.target.value
+        "https://digytosback.herokuapp.com/api/products/search/" + e.target.value
       );
       const datos = await response.json();
       if (datos !== "Producto no encontrado") {
@@ -112,7 +96,7 @@ const GestionProducto = () => {
     }
   };
 
-  //Función para actualizar producto editado a partir de la pantalla modal
+  //Función para actualizar producto editado desde la pantalla modal
   const productoActualizar = (id) => {
     async function fetchData() {
       const config = {
@@ -123,12 +107,74 @@ const GestionProducto = () => {
         },
         body: JSON.stringify(productoSel),
       };
-      await fetch("http://localhost:3002/api/productos/modify/" + id, config);
+      const response = await fetch(
+        "https://digytosback.herokuapp.com/api/products/modify/" + id,
+        config
+      );
+      const data = await response.json();
+      if (data) {
+        popupExitoso("Actualización exitosa");
+      }
     }
-    fetchData();
-    handleClose();
+    validarCamposRequeridos();
+    if (validado) {
+      fetchData();
+      handleClose();
+    }
   };
 
+  //Funciones para generar popup confirmación de exito o falla de operación
+  const popupExitoso = (msg) => {
+    Swal.fire({
+      title: "Operación Exitosa",
+      text: msg,
+      type: "success",
+    });
+  };
+
+  const popupFallido = (msg) => {
+    Swal.fire({
+      title: "Operación fallida",
+      text: msg,
+      type: "warning",
+    });
+  };
+
+  //Función para validar los campos obligatorios del formulario
+  var validado = false;
+  const validarCamposRequeridos = () => {
+    validado = true;
+    if (productoSel.name === "") {
+      popupFallido("El nombre de producto es requerido");
+      validado = false;
+    }
+    if (productoSel.value === "") {
+      popupFallido("El valor de producto es requerido");
+      validado = false;
+    }
+    if (productoSel.quantity === "") {
+      popupFallido(
+        "La cantidad de existencias del producto es un campo requerido"
+      );
+      validado = false;
+    }
+  };
+
+  //Función para consultar todos los productos disponibles
+  useEffect(() => {
+    async function fetchData() {
+      if (filtro.length === 0) {
+        const response = await fetch("https://digytosback.herokuapp.com/api/products/list");
+        const data = await response.json();
+        if (data) {
+          setProductos(data);
+        }
+      }
+    }
+    fetchData();
+  });
+
+  //**********************************************************************************/
   // Return de componente a renderizar
   return (
     <div>
@@ -173,7 +219,11 @@ const GestionProducto = () => {
                               <th scope="row">{index + 1}</th>
                               <td>{producto.code}</td>
                               <td>{producto.name}</td>
-                              <td>{producto.value}</td>
+                              <td>
+                                {moneyFormat
+                                  .format(producto.value)
+                                  .replace(",00", "")}
+                              </td>
                               <td>{producto.quantity}</td>
                               <td
                                 className={colorAlertaEstado(producto.quantity)}
@@ -252,7 +302,7 @@ const GestionProducto = () => {
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
-                value={productoSel.name}
+                value={productoSel.name || ""}
                 name="name"
                 onChange={handleChange}
               />
@@ -262,16 +312,16 @@ const GestionProducto = () => {
               <Form.Control
                 as="textarea"
                 rows={3}
-                value={productoSel.desc}
+                value={productoSel.desc || ""}
                 name="desc"
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Valor</Form.Label>
+              <Form.Label> Valor unitario (pesos $ COP)</Form.Label>
               <Form.Control
-                type="text"
-                value={productoSel.value}
+                type="Number"
+                value={productoSel.value || ""}
                 name="value"
                 onChange={handleChange}
               />
@@ -279,8 +329,8 @@ const GestionProducto = () => {
             <Form.Group className="mb-3">
               <Form.Label>Existencias</Form.Label>
               <Form.Control
-                type="text"
-                value={productoSel.quantity}
+                type="Numer"
+                value={productoSel.quantity || ""}
                 name="quantity"
                 onChange={handleChange}
               />

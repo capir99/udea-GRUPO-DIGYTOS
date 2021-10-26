@@ -5,6 +5,8 @@ const productoController = require("../controllers/productoController");
 //**************END POINTS*********************************************
 //Listar productos
 router.get("/list", productoController.getProductos);
+//Listar productos en stock
+router.get("/listStock", productoController.getProductosStock);
 //Crear producto
 router.post("/add", productoController.addProducto);
 //Eliminar producto

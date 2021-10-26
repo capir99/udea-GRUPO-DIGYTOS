@@ -2,9 +2,17 @@ const Venta = require("../models/ventaModel");
 
 //metodo para listar las ventas
 exports.getVentas = (req, res) => {
-  Venta.find().then((postResult) => {
-    res.status(200).json(postResult);
-  });
+  Venta.find()
+    .then((postResult) => {
+      if (postResult) {
+        res.status(200).json(postResult);
+      } else {
+        res.status(404).json("Sin ventas");
+      }
+    })
+    .catch((err) => {
+      console.log("error:", err);
+    });
 };
 
 //metodo para crear una nueva venta
@@ -20,7 +28,7 @@ exports.addVenta = (req, res) => {
     estado: "En proceso",
   });
   venta.save().then((created) => {
-    res.status(201).json("Venta creada satisfactoriamente");
+    res.status(201).json(created.id);
   });
 };
 

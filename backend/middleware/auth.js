@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(" ")[1];
     if (token) {
+      console.log("ver es: "+process.env.JWT_KEY);
       const decodedToken = jwt.decode(token, process.env.JWT_KEY);
       if (decodedToken) {
         const filter = { email: decodedToken.email };

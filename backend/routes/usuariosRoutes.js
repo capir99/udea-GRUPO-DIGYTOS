@@ -5,7 +5,9 @@ const auth = require("../middleware/auth");
 
 //**************END POINTS*********************************************
 //Listar usuarios
-router.get("/list", auth, usuarioController.getUsuarios);
+router.get("/list", usuarioController.getUsuarios);
+//Listar usuarios con rol Vendedor
+router.get("/sellerList", usuarioController.getUsuariosVendedores);
 //Crear Usuario
 router.post("/add", usuarioController.addUsuario);
 //Eliminar usuario

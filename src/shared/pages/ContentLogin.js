@@ -27,7 +27,7 @@ const Content = () => {
           };
 
           const response = await fetch(
-            "http://localhost:3002/api/usuarios/list",
+            "https://digytosback.herokuapp.com/api/users/list",
             config
           );
           await response.json();
@@ -38,7 +38,8 @@ const Content = () => {
         if (localStorage.getItem("token")) {
           async function fetchData() {
             const response = await fetch(
-              "http://localhost:3002/api/usuarios/search/" + decodedToken.email
+              "https://digytosback.herokuapp.com/api/users/search/" +
+                decodedToken.email
             );
             const datos = await response.json();
             if (datos[0]) {
@@ -60,6 +61,7 @@ const Content = () => {
       }
     }
   };
+
 
   return (
     <div>

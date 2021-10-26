@@ -2,9 +2,17 @@ const Usuario = require("../models/usuarioModel");
 
 //metodo para listar los usuarios
 exports.getUsuarios = (req, res) => {
-  Usuario.find().then((postResult) => {
-    res.status(200).json(postResult);
-  });
+  Usuario.find()
+    .then((postResult) => {
+      if (postResult) {
+        res.status(200).json(postResult);
+      } else {
+        res.status(404).json("Sin usuarios");
+      }
+    })
+    .catch((err) => {
+      console.log("error:", err);
+    });
 };
 
 //metodo para crear un nuevo usuario con rol vendedor por defecto
@@ -65,6 +73,18 @@ exports.modifyUsuario = (req, res) => {
       });
     } else {
       res.status(404).json("Usuario no encontrado");
+    }
+  });
+};
+
+//metodo para consultar vendedores
+exports.getUsuariosVendedores = (req, res) => {
+  const filter = { rol: "Vendedor", estado: "Autorizado" };
+  Usuario.find(filter).then((userResult) => {
+    if (userResult) {
+      res.status(200).json(userResult);
+    } else {
+      res.status(404).json("No existe ningún usuario con rol Vendedor");
     }
   });
 };

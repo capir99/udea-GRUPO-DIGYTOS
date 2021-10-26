@@ -11,13 +11,14 @@ import GestionaVenta from "./Venta/pages/GestionVenta";
 import RegistroVenta from "./Venta/pages/RegistroVenta";
 import Error from "./Shared/pages/Error";
 import SinAutorizacion from "./Shared/pages/SinAutorizacion";
-
 import {
   BrowserRouter as Router,
   Switch,
   Redirect,
   Route,
 } from "react-router-dom";
+require('dotenv').config()
+
 
 function App() {
   const rol = localStorage.getItem("rol");
@@ -27,14 +28,25 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Header />
             <ContentLogin />
+            <Header />
           </Route>
 
-          <Route path="/home" exact>
-            <Header />
-            <ContentHome />
-          </Route>
+          <Route
+            path="/home"
+            render={() => {
+              if (estado === "Autorizado") {
+                return (
+                  <div>
+                    <Header />
+                    <ContentHome />
+                  </div>
+                );
+              } else {
+                return <Redirect to="/SinAutorizacion" />;
+              }
+            }}
+          />
 
           <Route
             exact

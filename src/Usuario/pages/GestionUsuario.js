@@ -42,7 +42,7 @@ const GestionUsuario = () => {
       };
       if (filtro.length === 0) {
         const response = await fetch(
-          "http://localhost:3002/api/usuarios/list",
+          "https://digytosback.herokuapp.com/api/users/list",
           config
         );
         const data = await response.json();
@@ -58,7 +58,7 @@ const GestionUsuario = () => {
   const usuarioSeleccion = (e) => {
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3002/api/usuarios/" + e.target.id
+        "https://digytosback.herokuapp.com/api/users/" + e.target.id
       );
       const data = await response.json();
       setusuarioSel(data);
@@ -74,7 +74,7 @@ const GestionUsuario = () => {
         method: "DELETE",
       };
       const response = await fetch(
-        "http://localhost:3002/api/usuarios/remove/" + e.target.id,
+        "https://digytosback.herokuapp.com/api/users/remove/" + e.target.id,
         config
       );
       await response.json();
@@ -87,7 +87,7 @@ const GestionUsuario = () => {
     setFiltro(e.target.value);
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3002/api/usuarios/search/" + e.target.value
+        "https://digytosback.herokuapp.com/api/users/search/" + e.target.value
       );
       const datos = await response.json();
       if (datos !== "Usuario no encontrado") {
@@ -112,7 +112,10 @@ const GestionUsuario = () => {
         },
         body: JSON.stringify(usuarioSel),
       };
-      await fetch("http://localhost:3002/api/usuarios/modify/" + id, config);
+      await fetch(
+        "https://digytosback.herokuapp.com/api/users/modify/" + id,
+        config
+      );
     }
     fetchData();
     handleClose();

@@ -3,16 +3,22 @@ var app = express();
 const usuarioRoutes = require("./routes/usuariosRoutes");
 const productoRoutes = require("./routes/productosRoutes");
 const ventaRoutes = require("./routes/ventasRoutes");
+const ventaProductoRoutes = require("./routes/ventaProductoRoutes");
 var cors = require("cors");
+require("dotenv").config();
 
 //Conexión base de datos
 const mongoose = require("mongoose");
-const URI =
-  "mongodb+srv://webapp_conn:Digytos2021@cluster0.dssyh.mongodb.net/digytosDB?retryWrites=true&w=majority";
+const URI = process.env.MONGODB_CONNECT;
+
 //metodo conexión 1
-mongoose.connect(URI).then(() => {
-  console.log("Base de datos conectada!!!");
-});
+try {
+  mongoose.connect(URI).then(() => {
+    console.log("Base de datos conectada!!!");
+  });
+} catch (error) {
+  console.log("El error es: " + error);
+}
 
 //metodo conexión 2
 // const connectDB = async () => {
@@ -29,9 +35,9 @@ app.use(cors());
 
 module.exports = app;
 
-app.use("/api/usuarios", usuarioRoutes);
-app.use("/api/productos", productoRoutes);
-app.use("/api/ventas", ventaRoutes);
-
+app.use("/api/users", usuarioRoutes);
+app.use("/api/products", productoRoutes);
+app.use("/api/sales", ventaRoutes);
+app.use("/api/saleProduct", ventaProductoRoutes);
 
 module.exports = app;
