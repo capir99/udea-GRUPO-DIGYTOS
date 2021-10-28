@@ -27,11 +27,7 @@ const Content = () => {
           };
 
           const response = await fetch(
-<<<<<<< HEAD
             "https://digytosback.herokuapp.com/api/users/list",
-=======
-            "https://udeagrupodigytos.herokuapp.com/api/usuarios/list",
->>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
             config
           );
           await response.json();
@@ -42,12 +38,8 @@ const Content = () => {
         if (localStorage.getItem("token")) {
           async function fetchData() {
             const response = await fetch(
-<<<<<<< HEAD
               "https://digytosback.herokuapp.com/api/users/search/" +
                 decodedToken.email
-=======
-              "https://udeagrupodigytos.herokuapp.com/api/usuarios/search/" + decodedToken.email
->>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
             );
             const datos = await response.json();
             if (datos[0]) {
@@ -75,7 +67,7 @@ const Content = () => {
     <div>
       <div className="d-flex justify-content-center mt-5">
         <GoogleLogin
-          clientId="1067360347931-rmi20n77einrbt0mjn1fkdj7opcgupqb.apps.googleusercontent.com"
+          clientId="1067360347931-fkbqer9qjucmk7bk7463nloip5ea1cnj.apps.googleusercontent.com"
           // buttonText="Login"
           render={(renderProps) => (
             <Link to="/home">

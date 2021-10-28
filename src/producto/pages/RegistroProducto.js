@@ -1,4 +1,4 @@
-import Menu from "../../shared/components/Menu";
+import Menu from "../../Shared/components/Menu";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -45,7 +45,6 @@ const RegistroProducto = () => {
         body: JSON.stringify(producto),
       };
       if (producto) {
-<<<<<<< HEAD
         const response = await fetch(
           "https://digytosback.herokuapp.com/api/products/add/",
           config
@@ -55,10 +54,6 @@ const RegistroProducto = () => {
           popupExitoso("Registro exitoso");
           history.push("/gestionProducto");
         }
-=======
-        await fetch("https://udeagrupodigytos.herokuapp.com/api/productos/add/", config);
-        history.push("/gestionProducto");
->>>>>>> 616c8517b17235fb92c4c266581a892d86f5999e
       }
     }
     validarCamposRequeridos();
